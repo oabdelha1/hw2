@@ -10,22 +10,25 @@
  *  in this header file (since they are templates).
  *  Both functions should run in time O(n*log(n)) and not O(n^2)
  */
+
+/*
 template <typename T>
-std::set<T> setIntersection(std::set<T>& s1, std::set<T>& s2)
+std::set<T> setIntersection(typename std::set<T>& s1, typename std::set<T>& s2)
 {
-    std::set<T> output;
-    typename set<T>::iterator it;
+     std::set<T> output;
+     typename std::set<T>::iterator it;
     for (it = s1.begin(); it != s1.end(); it++){
-        cout << "Iterator at: " << &it << endl;
+        std::cout << "Iterator at: " << &it << std::endl;
         output.insert(*it);
     }
     for (it = s2.begin(); it != s2.end(); it++){
-        cout << "Iterator at: " << &it << endl;
+        std::cout << "Iterator at: " << &it << std::endl;
         output.insert(*it);
     }
 
     return output;
 }
+
 template <typename T>
 std::set<T> setUnion(std::set<T>& s1, std::set<T>& s2)
 {
@@ -42,6 +45,7 @@ std::set<T> setUnion(std::set<T>& s1, std::set<T>& s2)
     }
 
 }
+*/
 
 /***********************************************/
 /* Prototypes of functions defined in util.cpp */
