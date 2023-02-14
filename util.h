@@ -11,7 +11,7 @@
  *  Both functions should run in time O(n*log(n)) and not O(n^2)
  */
 
-/*
+
 template <typename T>
 std::set<T> setIntersection(typename std::set<T>& s1, typename std::set<T>& s2)
 {
@@ -35,7 +35,7 @@ std::set<T> setUnion(std::set<T>& s1, std::set<T>& s2)
     std::set<T> output;
     typename std::set<T>::iterator it;
     for (it = s1.begin(); it != s1.end(); it++){
-        typename T x = *it;
+        T x = *it;
         typename std::set<T>::iterator check;
         check = s2.find(x);
 
@@ -45,7 +45,7 @@ std::set<T> setUnion(std::set<T>& s1, std::set<T>& s2)
     }
 
 }
-*/
+
 
 /***********************************************/
 /* Prototypes of functions defined in util.cpp */
