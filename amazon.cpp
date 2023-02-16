@@ -1,6 +1,5 @@
 #include <iostream>
 #include <fstream>
-#include <set>
 #include <sstream>
 #include <vector>
 #include <iomanip>
@@ -10,10 +9,7 @@
 #include "product_parser.h"
 #include "util.h"
 #include "mydatastore.h"
-#include "datastore.h"
-#include "book.h"
-#include "movie.h"
-#include "clothing.h"
+
 
 using namespace std;
 struct ProdNameSorter {
@@ -62,7 +58,7 @@ int main(int argc, char* argv[])
     cout << "  OR term term ...                   " << endl;
     cout << "  ADD username search_hit_number     " << endl;
     cout << "  VIEWCART username                  " << endl;
-    cout << "  BUYCART username                   " << endl;
+    cout << "  BUY CART username                   " << endl;
     cout << "  QUIT new_db_filename               " << endl;
     cout << "====================================" << endl;
 
@@ -105,9 +101,29 @@ int main(int argc, char* argv[])
                 done = true;
             }
 	    /* Add support for other commands here */
-            //else if ( cmd == "")
+            else if ( cmd == "ADD"){
+                string username;
+                size_t hitnum;
+                ss >> username;
+                ss >> hitnum;
+                hitnum --;
+                //testing
+                cout << "Adding for " << username << endl;
+                cout << "Going to add " << hits[hitnum]->getName() << endl;
 
-
+                if(hitnum< hits.size()) {
+                    Product *inputprod = hits[hitnum];
+                    ds.addCart(username, inputprod);
+                    cout << "Add command finished " << endl;
+                }
+            }
+            else if (cmd == "VIEWCART"){
+                string username;
+                ss >> username;
+                cout << "viewing for " << username << endl;
+                vector<Product*> outview = ds.viewCart(username);
+                displayProducts(outview);
+            }
 
 
             else {
@@ -129,7 +145,9 @@ void displayProducts(vector<Product*>& hits)
     std::sort(hits.begin(), hits.end(), ProdNameSorter());
     for(vector<Product*>::iterator it = hits.begin(); it != hits.end(); ++it) {
         cout << "Hit " << setw(3) << resultNo << endl;
+        //cout << "Segfault a" << endl;
         cout << (*it)->displayString() << endl;
+        //cout << "Segfault b" << endl;
         cout << endl;
         resultNo++;
     }

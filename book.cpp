@@ -56,5 +56,10 @@ std::string Book::displayString() const {
 }
 
 void Book::dump(std::ostream& os) const {
-    os << "Dump Test" << std::endl;
+    os << "book" << std::endl;
+    os << name_ << std::endl;
+    os << std::setprecision(2) << std::fixed << price_ << std::endl;
+    os << std::to_string(qty_) << std::endl;
+    os << isbn_ << std::endl;
+    os << author_ << std::endl;
 }

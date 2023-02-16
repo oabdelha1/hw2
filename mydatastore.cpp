@@ -24,6 +24,25 @@ MyDataStore::~MyDataStore() {
 }
 
 void MyDataStore::addCart(std::string name, Product *p) {
+
+
+    bool found = false;
+    for (size_t i = 0; i < users_.size(); i++){
+        if (users_[i]->getName() == name){
+            found = true;
+            std::cout << "Found " << name << std::endl;
+        }
+    }
+
+    if (found == false){
+        std::cout << "User not found" << std::endl;
+    }
+    else{
+        carts[name].push_back(p);
+        std::cout << "Just added " << p->getName() << " for " << name << std::endl;
+    }
+
+    /*
     std::map<std::string, std::vector<Product*> >::iterator it;
     it = carts.find(name);
     if(it != carts.end()){
@@ -32,6 +51,7 @@ void MyDataStore::addCart(std::string name, Product *p) {
     else{
         std::cout << "User Not Found" << std::endl;
     }
+     */
 }
 
 void MyDataStore::addProduct(Product *p) {
@@ -55,7 +75,19 @@ void MyDataStore::addUser(User *u) {
 }
 
 void MyDataStore::dump(std::ostream &ofile) {
-    ofile << "just test" << std::endl;
+
+    ofile << "<products>" << std::endl;
+    for (size_t i = 0; i < prods_.size(); i++){
+        prods_[i]->dump(ofile);
+    }
+    ofile << "</products>" << std::endl;
+
+    ofile << "<users>" << std::endl;
+    for (size_t i = 0; i < users_.size(); i++){
+        users_[i]->dump(ofile);
+    }
+    ofile << "</users>" << std::endl;
+
 }
 
 std::vector<Product *> MyDataStore::search(std::vector<std::string> &terms, int type) {
@@ -64,8 +96,22 @@ std::vector<Product *> MyDataStore::search(std::vector<std::string> &terms, int 
 
     //Only 1 term case, error as placeholder
     if (terms.size() == 1){
-        std::cout << "Error, only 1 term" << std::endl;
+
+        std::map<std::string, std::set<Product*> >::iterator itsing;
+        itsing = keywords_.find(terms[0]);
+        if(itsing == keywords_.end() ){
+            return output;
+        }
+        std::set<Product*> termsing;
+        termsing = itsing->second;
+
+        std::set<Product*>::iterator finalsingiterator;
+        for (finalsingiterator = termsing.begin(); finalsingiterator!= termsing.end(); finalsingiterator++){
+            output.push_back(*finalsingiterator);
+        }
+
         return output;
+
     }
 
     //Terms

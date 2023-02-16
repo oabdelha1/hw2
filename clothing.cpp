@@ -56,5 +56,10 @@ std::string Clothing::displayString() const {
 }
 
 void Clothing::dump(std::ostream& os) const {
-    os << "Dump Test" << std::endl;
+    os << "clothing" << std::endl;
+    os << name_ << std::endl;
+    os << std::fixed << std::setprecision(2) << std::to_string(price_) << std::endl;
+    os << std::to_string(qty_) << std::endl;
+    os << size_ << std::endl;
+    os << brand_ << std::endl;
 }

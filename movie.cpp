@@ -57,5 +57,10 @@ std::string Movie::displayString() const {
 }
 
 void Movie::dump(std::ostream& os) const {
-    os << "Dump Test" << std::endl;
+    os << "book" << std::endl;
+    os << name_ << std::endl;
+    os << std::fixed << std::setprecision(2) << std::to_string(price_) << std::endl;
+    os << std::to_string(qty_) << std::endl;
+    os << genre_ << std::endl;
+    os << rating_ << std::endl;
 }
