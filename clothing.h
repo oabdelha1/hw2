@@ -20,8 +20,9 @@ public:
     void dump(std::ostream& os) const;
 
 private:
-    std::string brand_;
     std::string size_;
+    std::string brand_;
+
 };
 
 #endif

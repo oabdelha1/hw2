@@ -12,8 +12,8 @@ Clothing::Clothing(const std::string category, const std::string name, double pr
            const std::string size, const std::string brand) : 
     Product (category, name, price, qty)
 {
-    brand_ = brand;
     size_ = size;
+    brand_ = brand;
 
 }
 

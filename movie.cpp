@@ -57,7 +57,7 @@ std::string Movie::displayString() const {
 }
 
 void Movie::dump(std::ostream& os) const {
-    os << "book" << std::endl;
+    os << "movie" << std::endl;
     os << name_ << std::endl;
     os << std::fixed << std::setprecision(2) << std::to_string(price_) << std::endl;
     os << std::to_string(qty_) << std::endl;
