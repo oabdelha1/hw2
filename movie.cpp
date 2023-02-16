@@ -3,6 +3,8 @@
 #include <set>
 #include <vector>
 #include <algorithm>
+#include <iomanip>
+#include <sstream>
 #include "product.h"
 #include "movie.h"
 #include "util.h"
@@ -43,7 +45,15 @@ bool Movie::isMatch(std::vector<std::string>& searchTerms) const{
 }
 
 std::string Movie::displayString() const {
-    return "Display String test";
+    std::string ret;
+
+    std::stringstream ss;
+    ss << name_ << '\n';
+    ss << "Genre: " << genre_ << " Rating: " << rating_ << '\n';
+    ss <<std::fixed<< std::setprecision(2) << price_ << " " << qty_ << " left.";
+    ret = ss.str();
+
+    return ret;
 }
 
 void Movie::dump(std::ostream& os) const {

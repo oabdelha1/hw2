@@ -3,6 +3,8 @@
 #include <set>
 #include <vector>
 #include <algorithm>
+#include <iomanip>
+#include <sstream>
 #include "product.h"
 #include "book.h"
 
@@ -42,7 +44,15 @@ bool Book::isMatch(std::vector<std::string>& searchTerms) const{
 }
 
 std::string Book::displayString() const {
-    return "Display String test";
+    std::string ret;         //= name_;
+
+    std::stringstream ss;
+    ss << name_ << '\n';
+    ss << "Author: " << author_ << " ISBN: " << isbn_ << '\n';
+    ss <<std::fixed<< std::setprecision(2) << price_ << " " << qty_ << " left.";
+    ret = ss.str();
+
+    return ret;
 }
 
 void Book::dump(std::ostream& os) const {
