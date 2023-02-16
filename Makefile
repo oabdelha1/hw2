@@ -26,7 +26,7 @@ book.o: book.cpp book.h product.h
 	$(CXX) $(CXXFLAGS) $(DEFS) -o $@ -c book.cpp
 movie.o: movie.cpp movie.h product.h
 	$(CXX) $(CXXFLAGS) $(DEFS) -o $@ -c movie.cpp
-clothing.o: clothing.cpp clothing.h product.h
+clothing.o: clothing.cpp clothing.h product.h util.h
 	$(CXX) $(CXXFLAGS) $(DEFS) -o $@ -c clothing.cpp
 mydatastore.o: mydatastore.cpp mydatastore.h product.h user.h datastore.h util.h
 	$(CXX) $(CXXFLAGS) $(DEFS) -o $@ -c mydatastore.cpp

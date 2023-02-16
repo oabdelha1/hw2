@@ -136,10 +136,23 @@ std::vector<Product *> MyDataStore::search(std::vector<std::string> &terms, int 
     //Placeholder for missing word
 
 
-    if(keywords_.find(term1) == keywords_.end() || keywords_.find(term2) == keywords_.end()){
+    if(keywords_.find(term1) != keywords_.end() && keywords_.find(term2) == keywords_.end()){
         //std::cout << "Failed to find term" << std::endl;
+        std::set<Product*>::iterator itonlyfir;
+        for (itonlyfir = keywords_[term1].begin(); itonlyfir != keywords_[term1].end(); itonlyfir++){
+            output.push_back(*itonlyfir);
+        }
         return output;
     }
+    if(keywords_.find(term1) == keywords_.end() && keywords_.find(term2) != keywords_.end()){
+        //std::cout << "Failed to find term" << std::endl;
+        std::set<Product*>::iterator itonlysec;
+        for (itonlysec = keywords_[term2].begin(); itonlysec != keywords_[term2].end(); itonlysec++){
+            output.push_back(*itonlysec);
+        }
+        return output;
+    }
+    
 
     //Try Again:
 

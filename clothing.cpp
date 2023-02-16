@@ -7,13 +7,14 @@
 #include <sstream>
 #include "product.h"
 #include "clothing.h"
+#include "util.h"
 
 Clothing::Clothing(const std::string category, const std::string name, double price, int qty, 
            const std::string size, const std::string brand) : 
     Product (category, name, price, qty)
 {
-    size_ = size;
-    brand_ = brand;
+    size_ = brand;
+    brand_ = size;
 
 }
 
@@ -31,9 +32,11 @@ std::set<std::string> Clothing::keywords() const {
     convToLower(tempname);
     convToLower(tempbrand);
 
-    std::set<std::string> retwords = parseStringToWords(tempname);
-
-    retwords.insert(tempbrand);
+    std::set<std::string> retname = parseStringToWords(tempname);
+    std::set<std::string> retbrand = parseStringToWords(tempbrand);
+    
+    std::set<std::string> retwords = setUnion<std::string>(retname, retbrand);
+    //retwords.insert(tempbrand);
     //retwords.insert(tempsize);
 
     return retwords;
