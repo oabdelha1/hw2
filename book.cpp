@@ -22,9 +22,9 @@ Book::~Book(){
 std::set<std::string> Book::keywords() const {
 
 
-    std::string tempname = name_;
-    std::string tempisbn = isbn_;
-    std::string tempauth = author_;
+    std::string tempname = convToLower(name_);
+    std::string tempisbn = convToLower(isbn_);
+    std::string tempauth = convToLower(author_);
 
     convToLower(tempname);
     convToLower(tempauth);

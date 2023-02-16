@@ -23,8 +23,8 @@ Movie::~Movie(){
 std::set<std::string> Movie::keywords() const {
 
 
-    std::string tempname = name_;
-    std::string tempgenre = genre_;
+    std::string tempname = convToLower(name_);
+    std::string tempgenre = convToLower(genre_);
     //Change to rating? std::string tempauth = author_;
 
     convToLower(tempname);

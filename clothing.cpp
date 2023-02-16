@@ -22,8 +22,8 @@ Clothing::~Clothing(){
 std::set<std::string> Clothing::keywords() const {
 
 
-    std::string tempname = name_;
-    std::string tempbrand = brand_;
+    std::string tempname = convToLower(name_);
+    std::string tempbrand = convToLower(brand_);
     //std::string tempsize = size_;
 
     convToLower(tempname);

@@ -25,13 +25,15 @@ public:
 
     void addCart(std::string name, Product *p);
 
-    void viewCart(std::string name);
+    std::vector<Product*> viewCart(std::string name);
 
 protected:
 
-    std::map<std::string, std::queue<Product*> > carts;
+    std::map<std::string, std::vector<Product*> > carts;
     std::vector<Product*> prods_;
     std::vector<User*> users_;
+    std::map<std::string, std::set<Product*> > keywords_;
+
 
 };
 #endif
