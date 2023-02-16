@@ -118,7 +118,7 @@ std::vector<Product *> MyDataStore::search(std::vector<std::string> &terms, int 
     std::string term1 = convToLower(terms[0]);
     std::string term2 = convToLower(terms[1]);
 
-    std::cout << "Created search terms: " << term1 << term2 << std::endl;
+    //std::cout << "Created search terms: " << term1 << term2 << std::endl;
 
     //Sets for individual terms and combined
     std::set<Product*> term1prods;
@@ -126,16 +126,18 @@ std::vector<Product *> MyDataStore::search(std::vector<std::string> &terms, int 
     std::set<Product*> totalterm;
 
     //Check if there are the keywords
+    /*
     std::map<std::string, std::set<Product*> >::iterator checker;
     for (checker = keywords_.begin(); checker != keywords_.end(); checker ++){
-        std::cout << checker->first << ", " << std::endl;
+        //std::cout << checker->first << ", " << std::endl;
     }
     std::cout << std::endl;
-
+    */
     //Placeholder for missing word
 
+
     if(keywords_.find(term1) == keywords_.end() || keywords_.find(term2) == keywords_.end()){
-        std::cout << "Failed to find term" << std::endl;
+        //std::cout << "Failed to find term" << std::endl;
         return output;
     }
 
@@ -148,27 +150,31 @@ std::vector<Product *> MyDataStore::search(std::vector<std::string> &terms, int 
     term2prods = keywords_[term2];
 
     //Test each set
+    /*
     std::set<Product*>::iterator checkterm1;
     std::set<Product*>::iterator checkterm2;
     for (checkterm1 = term1prods.begin(); checkterm1!= term1prods.end(); checkterm1++){
         std::cout << "Product: " << (*checkterm1)->getName() << std::endl;
     }
+     */
 
     //Create the final set
     if(type == 0){
-        std::cout << "Type 0" << std::endl;
+        //std::cout << "Type 0" << std::endl;
         totalterm = setUnion<Product*>(term1prods, term2prods);
     }
     if(type == 1){
-        std::cout << "Type 1" << std::endl;
+        //std::cout << "Type 1" << std::endl;
         totalterm = setIntersection<Product*>(term1prods, term2prods);
     }
 
     //Test the total set
+    /*
     std::set<Product*>::iterator checkfinal;
     for (checkfinal = totalterm.begin(); checkfinal!= totalterm.end(); checkfinal ++){
         std::cout << "Product: " << (*checkfinal)->getName() << std::endl;
     }
+    */
 
     //Add from final set to vector
     std::set<Product*>::iterator itfin;
@@ -215,7 +221,7 @@ std::vector<Product*> MyDataStore::viewCart(std::string name) {
     std::map<std::string, std::vector<Product*> >::iterator it;
     it = carts.find(name);
     if(it != carts.end()){
-        std::cout << "Test seeing in the Cart for " << name << std::endl;
+        //std::cout << "Test seeing in the Cart for " << name << std::endl;
         return it->second;
     }
     return output;
